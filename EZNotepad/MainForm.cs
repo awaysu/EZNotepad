@@ -37,41 +37,147 @@ namespace EZNotepad
 		public const string NAME_BACKUP_PATH = "\\Backup\\";
 		public const string  WINRAR = @"C:\Program Files\WinRAR\WinRAR.exe";
 		
-		string gGlobalTopPath = @"d:\123";
+		string gGlobalTopPath = @"c:\test";
 		string gGlobalBackupPath;
 		string gCurrentFile = "";
 		int globalFontSize = 14;
 		bool editMode = false;
-		
-		
-		public MainForm()
-		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-		}
-		
-		/* ========================= 起始 ========================= */
-		
-		void MainFormLoad(object sender, EventArgs e)
-		{
-			treeViewFile.ImageList = imageList;
-			
-			init();
-			reWindowSize();
-			loadHistoryTocombSearch();
-			paintTreeView(treeViewFile, gGlobalTopPath);
-			changeFontSize();
-			refreshBtnEditSave();
-			treeViewFile.Focus();		
-		}
-		
-		void init()
+
+        const float BASE_WIDTH = 1280f;
+        const float BASE_HEIGHT = 720f;
+
+        public MainForm()
+        {
+            this.AutoScaleDimensions = new SizeF(96F, 96F);
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            InitializeComponent();
+        }
+
+        void MainFormLoad(object sender, EventArgs e)
+        {
+            reWindowSize();
+            ScaleControlsByScreen();
+            treeViewFile.ImageList = imageList;
+
+            init();
+            initButtonIcon();
+            loadHistoryTocombSearch();
+            paintTreeView(treeViewFile, gGlobalTopPath);
+            changeFontSize();
+            refreshBtnEditSave();
+
+            treeViewFile.Focus();
+
+        }
+
+        private void initButtonIcon()
+        {
+            BtnNewContent.Image = new Bitmap(Properties.Resources.add, new Size(48, 48));
+            BtnNewContent.ImageAlign = ContentAlignment.TopCenter;
+            BtnNewContent.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnEdit.Image = new Bitmap(Properties.Resources.edid, new Size(48, 48));
+            BtnEdit.ImageAlign = ContentAlignment.TopCenter;
+            BtnEdit.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnSave.Image = new Bitmap(Properties.Resources.save, new Size(48, 48));
+            BtnSave.ImageAlign = ContentAlignment.TopCenter;
+            BtnSave.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnCancel.Image = new Bitmap(Properties.Resources.cancel, new Size(48, 48));
+            BtnCancel.ImageAlign = ContentAlignment.TopCenter;
+            BtnCancel.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnUTF8.Image = new Bitmap(Properties.Resources.utf8, new Size(48, 48));
+            BtnUTF8.ImageAlign = ContentAlignment.TopCenter;
+            BtnUTF8.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnBackup.Image = new Bitmap(Properties.Resources.backup, new Size(48, 48));
+            BtnBackup.ImageAlign = ContentAlignment.TopCenter;
+            BtnBackup.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnLine1.Image = new Bitmap(Properties.Resources.line1, new Size(48, 48));
+            BtnLine1.ImageAlign = ContentAlignment.TopCenter;
+            BtnLine1.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnLine2.Image = new Bitmap(Properties.Resources.line2, new Size(48, 48));
+            BtnLine2.ImageAlign = ContentAlignment.TopCenter;
+            BtnLine2.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnNewLine.Image = new Bitmap(Properties.Resources.newline, new Size(48, 48));
+            BtnNewLine.ImageAlign = ContentAlignment.TopCenter;
+            BtnNewLine.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnBig.Image = new Bitmap(Properties.Resources.big, new Size(48, 48));
+            BtnBig.ImageAlign = ContentAlignment.TopCenter;
+            BtnBig.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnSmall.Image = new Bitmap(Properties.Resources.small, new Size(48, 48));
+            BtnSmall.ImageAlign = ContentAlignment.TopCenter;
+            BtnSmall.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnAbout.Image = new Bitmap(Properties.Resources.info, new Size(48, 48));
+            BtnAbout.ImageAlign = ContentAlignment.TopCenter;
+            BtnAbout.TextAlign = ContentAlignment.BottomCenter;
+
+            BtnFileManager.Image = new Bitmap(Properties.Resources.people, new Size(24, 24));
+			BtnFileManager.ImageAlign = ContentAlignment.MiddleCenter;
+			BtnFileManager.TextAlign = ContentAlignment.MiddleCenter;
+            BtnFileManager.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnFileManager.Padding = new Padding(20,0, 0, 0);
+
+            BtnRefresh.Image = new Bitmap(Properties.Resources.refresh, new Size(24, 24));
+            BtnRefresh.Image = new Bitmap(Properties.Resources.refresh, new Size(24, 24));
+            BtnRefresh.ImageAlign = ContentAlignment.MiddleCenter;
+            BtnRefresh.TextAlign = ContentAlignment.MiddleCenter;
+            BtnRefresh.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnRefresh.Padding = new Padding(20, 0, 0, 0);
+
+            BtnSearchFile.Image = new Bitmap(Properties.Resources.scan, new Size(24, 24));
+            BtnSearchFile.ImageAlign = ContentAlignment.MiddleCenter;
+            BtnSearchFile.TextAlign = ContentAlignment.MiddleCenter;
+            BtnSearchFile.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnSearchFile.Padding = new Padding(20, 0, 0, 0);
+
+            BtnSearchFolder.Image = new Bitmap(Properties.Resources.scan, new Size(24, 24));
+            BtnSearchFolder.ImageAlign = ContentAlignment.MiddleCenter;
+            BtnSearchFolder.TextAlign = ContentAlignment.MiddleCenter;
+            BtnSearchFolder.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnSearchFolder.Padding = new Padding(20, 0, 0, 0);
+        }
+
+
+        private void ScaleControlsByScreen()
+        {
+            float actualWidth = Screen.PrimaryScreen.Bounds.Width;
+            float actualHeight = Screen.PrimaryScreen.Bounds.Height;
+            float scaleX = actualWidth / BASE_WIDTH;
+            float scaleY = actualHeight / BASE_HEIGHT;
+            ScaleControls(this.Controls, scaleX, scaleY);
+        }
+
+        private void ScaleControls(Control.ControlCollection controls, float scaleX, float scaleY)
+        {
+            foreach (Control ctrl in controls)
+            {
+                ctrl.Left = (int)(ctrl.Left * scaleX);
+                ctrl.Top = (int)(ctrl.Top * scaleY);
+                ctrl.Width = (int)(ctrl.Width * scaleX);
+                ctrl.Height = (int)(ctrl.Height * scaleY);
+
+                try
+                {
+                    ctrl.Font = new Font(ctrl.Font.FontFamily, ctrl.Font.Size * Math.Min(scaleX, scaleY), ctrl.Font.Style);
+                }
+                catch { }
+
+                if (ctrl.HasChildren)
+                    ScaleControls(ctrl.Controls, scaleX, scaleY);
+            }
+        }
+
+
+        void init()
 		{
 			string ProcessName = Process.GetCurrentProcess().ProcessName;
 			Process[] p = Process.GetProcessesByName(ProcessName);
@@ -244,8 +350,8 @@ namespace EZNotepad
 				Content.ReadOnly = false;
 				BtnLine1.Enabled = true;
 				BtnLine2.Enabled = true;
-				btnUTF8.Enabled = true;
-				btnCancel.Enabled = true;
+				BtnUTF8.Enabled = true;
+				BtnCancel.Enabled = true;
 				Content.BackColor = SystemColors.Window;				
 			}
 			else
@@ -255,22 +361,29 @@ namespace EZNotepad
 				Content.ReadOnly = true;
 				BtnLine1.Enabled = false;
 				BtnLine2.Enabled = false;		
-				btnUTF8.Enabled = false;
-				btnCancel.Enabled = false;
+				BtnUTF8.Enabled = false;
+				BtnCancel.Enabled = false;
 				Content.BackColor = SystemColors.ButtonFace;
 			}
 			
 		}
-		
-		/* ========================= 常用function ========================= */
-		
-		String GetConfig(String name)
-		{
-			String aa= ConfigurationManager.AppSettings[name];			
-			return ConfigurationManager.AppSettings[name];
-		}
-		
-		void SaveConfig(String name, String para)
+
+        /* ========================= 常用function ========================= */
+
+        String GetConfig(String name)
+        {
+            try
+            {
+                return ConfigurationManager.AppSettings[name];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("讀取設定錯誤: " + ex.Message);
+                return null;
+            }
+        }
+
+        void SaveConfig(String name, String para)
 		{
 			Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 			config.AppSettings.Settings.Remove(name);			
@@ -340,7 +453,7 @@ namespace EZNotepad
 			Content.Focus();
 		}
 		
-		void LstNewTypeClick(object sender, EventArgs e)
+		void BtnFileManagerClick(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("Explorer.exe", "/e, " + gGlobalTopPath);
 			Content.Focus();
@@ -424,6 +537,7 @@ namespace EZNotepad
 			{
 				string file = treeViewFile.SelectedNode.FullPath;
 				string path = gGlobalTopPath + "\\" + file;
+
 				if(File.Exists(path))
 				{				
 				    //Content.Text = File.ReadAllText(path,System.Text.Encoding.UTF8);
@@ -625,6 +739,18 @@ namespace EZNotepad
 
 		}
 
+        private void BtnAbout_Click(object sender, EventArgs e)
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
 
-	}
+            MessageBox.Show(
+                "EZNotepad v" + fvi.FileVersion + " by Awaysu",
+                "版本資訊",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
+        }
+    }
 }

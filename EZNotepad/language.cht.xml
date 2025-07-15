@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="strNew" xml:space="preserve">
+    <value>新建</value>
+  </data>
+  <data name="strEdit" xml:space="preserve">
+    <value>編輯</value>
+  </data>  
+  <data name="strSave" xml:space="preserve">
+    <value>存檔</value>
+  </data>    
+  <data name="strUtf8" xml:space="preserve">
+    <value>編碼</value>
+  </data>
+  <data name="strCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>  
+  <data name="strLine1" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="strLine2" xml:space="preserve">
+    <value>===</value>
+  </data>  
+  <data name="strFontBig" xml:space="preserve">
+    <value>字體放大</value>
+  </data>  
+  <data name="strFontSmall" xml:space="preserve">
+    <value>字體縮小</value>
+  </data>  
+  <data name="strEnter" xml:space="preserve">
+    <value>自動換行</value>
+  </data>  
+  <data name="strBackup" xml:space="preserve">
+    <value>備份</value>
+  </data>  
+  <data name="strAbout" xml:space="preserve">
+    <value>關於</value>
+  </data>  
+  <data name="strFileManager" xml:space="preserve">
+    <value>檔案總管</value>
+  </data>  
+  <data name="strReflush" xml:space="preserve">
+    <value>重新整理</value>
+  </data>  
+  <data name="strSearch" xml:space="preserve">
+    <value>搜尋目前檔案</value>
+  </data>  
+  <data name="strSearchAll" xml:space="preserve">
+    <value>搜尋所有檔案</value>
+  </data>    
+  <data name="strProgramRun2" xml:space="preserve">
+    <value>程式重複執行!</value>
+  </data> 
+  <data name="strCreateFolderFailed" xml:space="preserve">
+    <value>錯誤:資料夾建立失敗!</value>
+  </data> 
+  <data name="strCreateFolderOK" xml:space="preserve">
+    <value>初始化:確認資料夾成功!</value>
+  </data> 
+  <data name="strPaintTreeViewFailed" xml:space="preserve">
+    <value>\r\n出错的位置为：Form1.paintTreeView()</value>
+  </data> 
+  <data name="strLoadConfigOK" xml:space="preserve">
+    <value>;讀取文件成功!</value>
+  </data>  
+  <data name="strLoadConfigFailed" xml:space="preserve">
+    <value>讀取設定錯誤: </value>
+  </data>  
+  <data name="strSelectOne" xml:space="preserve">
+    <value>請先選一個檔案!</value>
+  </data> 
+  <data name="strInputFile" xml:space="preserve">
+    <value>請輸入檔名</value>
+  </data> 
+  <data name="strNewFile" xml:space="preserve">
+    <value>新建</value>
+  </data> 
+  <data name="strOpen" xml:space="preserve">
+    <value>開啟</value>
+  </data> 
+  <data name="strSuccessfully" xml:space="preserve">
+    <value>成功</value>
+  </data> 
+  <data name="strFailed" xml:space="preserve">
+    <value>失敗</value>
+  </data> 
+  <data name="strOpenFirst" xml:space="preserve">
+    <value>請先開啟檔案!</value>
+  </data> 
+  <data name="strNowinRar" xml:space="preserve">
+    <value>無法備份,請先安裝WinRAR!</value>
+  </data> 
+</root>
